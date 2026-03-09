@@ -83,7 +83,7 @@ export default function Sidebar() {
               <Link
                 key={href}
                 href={href}
-                onClick={() => { if (window.innerWidth < 768) setSidebarCollapsed(true); }}
+                onClick={() => { if (typeof window !== 'undefined' && window.innerWidth < 768) setSidebarCollapsed(true); }}
                 className={clsx(
                   'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150 group',
                   active

@@ -57,7 +57,7 @@ export default function Header() {
   );
 
   return (
-    <header className="fixed top-0 right-0 left-0 md:left-0 z-20 h-16 flex items-center px-4 gap-3 border-b border-[#1e2030] bg-[#0b0d12]/80 backdrop-blur-md"
+    <header className="fixed top-0 right-0 left-0 md:left-0 z-20 h-16 flex items-center gap-3 border-b border-[#1e2030] bg-[#0b0d12]/80 backdrop-blur-md"
       style={{ paddingLeft: `calc(1rem + ${sidebarCollapsed ? '4rem' : '15rem'})` }}
     >
       {/* Mobile menu button */}

@@ -102,6 +102,7 @@ export const useMarketStore = create<MarketStore>()(
             costBasis += h.buyPrice * h.quantity;
           }
         });
+        if (costBasis === 0) return 0;
         return ((currentValue - costBasis) / costBasis) * 100;
       },
 
