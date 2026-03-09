@@ -11,6 +11,9 @@ stockapp/build/
 .env.local
 .env.*.local
 
+# Development docs (internal only, not for public)
+documents/
+
 # Misc
 .DS_Store
 *.pem
