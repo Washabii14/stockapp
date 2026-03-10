@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "82913346731",
+    "project_id": "stockclaw-c5f77",
+    "storage_bucket": "stockclaw-c5f77.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:82913346731:android:903f5f19374f75367123ee",
+        "android_client_info": {
+          "package_name": "com.example.stockapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "82913346731-a86o510hkn9ui3bpps3f8c1evo8u7qtf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBSo78hWBlWhkehQy6x3_W6BFEKKE4aSM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "82913346731-a86o510hkn9ui3bpps3f8c1evo8u7qtf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { LineChart, Plus, Check } from 'lucide-react';
 import { useMarketStore } from '@/store/useMarketStore';
+import { useWatchlistActions } from '@/hooks/useWatchlistActions';
 import { useAllAssets } from '@/hooks/useAssetData';
 import type { StockAsset } from '@/lib/mock/stocks';
 import type { CryptoAsset } from '@/lib/mock/crypto';
@@ -130,7 +131,7 @@ export default function AssetDetailPage() {
   const selectedTimeframe = useMarketStore((s) => s.selectedTimeframe);
   const setTimeframe = useMarketStore((s) => s.setTimeframe);
   const isWatchlisted = useMarketStore((s) => s.isWatchlisted);
-  const addToWatchlist = useMarketStore((s) => s.addToWatchlist);
+  const { addToWatchlistSync } = useWatchlistActions();
 
   const asset = getAssetBySymbol(symbol);
 
@@ -189,7 +190,7 @@ export default function AssetDetailPage() {
               </div>
               <button
                 onClick={() =>
-                  inWatchlist ? undefined : addToWatchlist({ symbol: asset.symbol, type: assetType })
+                  inWatchlist ? undefined : addToWatchlistSync({ symbol: asset.symbol, type: assetType })
                 }
                 disabled={inWatchlist}
                 className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${

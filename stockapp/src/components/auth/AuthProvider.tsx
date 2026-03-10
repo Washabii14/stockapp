@@ -3,6 +3,7 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import { auth } from '@/lib/firebase/config';
+import { useFirestoreSync } from '@/hooks/useFirestoreSync';
 
 interface AuthContextValue {
   user: User | null;
@@ -10,6 +11,11 @@ interface AuthContextValue {
 }
 
 const AuthContext = createContext<AuthContextValue>({ user: null, loading: true });
+
+function FirestoreSync() {
+  useFirestoreSync();
+  return null;
+}
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
@@ -23,7 +29,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return unsubscribe;
   }, []);
 
-  return <AuthContext.Provider value={{ user, loading }}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ user, loading }}>
+      <FirestoreSync />
+      {children}
+    </AuthContext.Provider>
+  );
 }
 
 export function useAuth() {

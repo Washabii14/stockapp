@@ -51,6 +51,10 @@ interface MarketStore {
   // Data access
   getAllAssets: () => (StockAsset | CryptoAsset)[];
   getAssetBySymbol: (symbol: string) => StockAsset | CryptoAsset | undefined;
+
+  // Firestore sync (for hydration from remote)
+  setUserData: (data: { watchlist: WatchlistItem[]; portfolio: PortfolioHolding[]; compareAssets: string[] }) => void;
+  clearUserData: () => void;
 }
 
 export const useMarketStore = create<MarketStore>()(
@@ -130,6 +134,29 @@ export const useMarketStore = create<MarketStore>()(
       getAllAssets: () => [...mockStocks, ...mockCrypto],
       getAssetBySymbol: (symbol) =>
         [...mockStocks, ...mockCrypto].find((a) => a.symbol.toUpperCase() === symbol.toUpperCase()),
+
+      setUserData: (data) =>
+        set({
+          watchlist: data.watchlist,
+          portfolio: data.portfolio,
+          compareAssets: data.compareAssets,
+        }),
+      clearUserData: () =>
+        set({
+          watchlist: [
+            { symbol: 'BTC', type: 'crypto' },
+            { symbol: 'ETH', type: 'crypto' },
+            { symbol: 'AAPL', type: 'stock' },
+            { symbol: 'NVDA', type: 'stock' },
+          ],
+          portfolio: [
+            { symbol: 'BTC', type: 'crypto', quantity: 0.5, buyPrice: 45000 },
+            { symbol: 'ETH', type: 'crypto', quantity: 5, buyPrice: 2800 },
+            { symbol: 'AAPL', type: 'stock', quantity: 10, buyPrice: 175 },
+            { symbol: 'NVDA', type: 'stock', quantity: 3, buyPrice: 650 },
+          ],
+          compareAssets: ['BTC', 'ETH'],
+        }),
     }),
     {
       name: 'market-store',

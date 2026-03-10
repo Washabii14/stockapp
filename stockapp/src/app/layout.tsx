@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { AuthProvider } from '@/components/auth/AuthProvider';
+import { Toaster } from '@/components/Toaster';
 import Sidebar from '@/components/layout/Sidebar';
 import Header from '@/components/layout/Header';
 
@@ -23,6 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className="dark">
       <body className={`${inter.variable} font-sans bg-[#0f1117] text-[#e2e8f0] antialiased`}>
         <AuthProvider>
+          <Toaster />
           <div className="flex h-screen overflow-hidden">
             <Sidebar />
             <div className="flex-1 flex flex-col min-w-0">

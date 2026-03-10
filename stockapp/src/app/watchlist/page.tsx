@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { LineChart, Trash2, Search } from 'lucide-react';
 import { useMarketStore } from '@/store/useMarketStore';
+import { useWatchlistActions } from '@/hooks/useWatchlistActions';
 import { useAllAssets } from '@/hooks/useAssetData';
 import type { StockAsset } from '@/lib/mock/stocks';
 import type { CryptoAsset } from '@/lib/mock/crypto';
@@ -82,7 +83,7 @@ function WatchlistEmpty() {
 export default function WatchlistPage() {
   const { isLoading } = useAllAssets();
   const watchlist = useMarketStore((s) => s.watchlist);
-  const removeFromWatchlist = useMarketStore((s) => s.removeFromWatchlist);
+  const { removeFromWatchlistSync } = useWatchlistActions();
   const getAssetBySymbol = useMarketStore((s) => s.getAssetBySymbol);
 
   const watchlistWithAssets = watchlist
@@ -166,7 +167,7 @@ export default function WatchlistPage() {
                 </div>
                 <div className="md:col-span-1 flex justify-end md:justify-start">
                   <button
-                    onClick={() => removeFromWatchlist(symbol)}
+                    onClick={() => removeFromWatchlistSync(symbol)}
                     className="p-2 rounded-lg text-[#475569] hover:text-[#ff4757] hover:bg-[#1a1d2e] transition-colors"
                     title="Remove from watchlist"
                     aria-label={`Remove ${symbol} from watchlist`}
